@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
+import { FilterQuery } from 'mongoose';
 import { Company } from '../schemas/company.schema';
 import { CompanyServiceService } from '../services/company-service.service';
 
@@ -17,7 +18,7 @@ export class CompanyServiceController {
   }
 
   @Get("/search")
-  async getAllCompanies(@Query('name') companyName: string): Promise<Company[]> {
-    return await this.companyServiceService.findAll({companyName});
+  async getAllCompanies(@Query() queryParams: FilterQuery<Company>): Promise<Company[]> {
+    return await this.companyServiceService.findAll(queryParams);
   }
 }

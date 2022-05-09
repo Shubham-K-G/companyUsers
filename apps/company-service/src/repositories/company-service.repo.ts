@@ -30,8 +30,8 @@ export class CompanyRepository {
 
     async findAll(companyFilterQuery: FilterQuery<Company>): Promise<Company[]> {
         try {
-            if(!companyFilterQuery.companyName || companyFilterQuery.companyName === "") return await this.companyModel.find();
-            else return await this.companyModel.find(companyFilterQuery);
+            if(companyFilterQuery) return await this.companyModel.find(companyFilterQuery);
+            else return await this.companyModel.find(); 
         } catch (error) {
             console.log(error);
             throw new BadRequestException("Error occured while finding company/companies in the db");
