@@ -21,5 +21,9 @@ export class UserServiceService {
     const companyId = response.data[0]._id;
     return await this.userRepository.findAll({companyId});
   }
+
+  async findAllUser(): Promise<User[]> {
+    return await this.userRepository.findAll({});
+  }
     
 }

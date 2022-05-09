@@ -11,6 +11,11 @@ export class UserServiceController {
     return await this.userServiceService.findAllUserByCompany(companyName);
   }
 
+  @Get("/all")
+  async searchAllUser(): Promise<User[]> {
+    return await this.userServiceService.findAllUser();
+  }
+
   @Post('/create')
   async createUser(@Body() user: User): Promise<User>{
     return await this.userServiceService.createUser(user);
