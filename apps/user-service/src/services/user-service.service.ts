@@ -17,7 +17,7 @@ export class UserServiceService {
   } 
 
   async findAllUserByCompany(companyName: string): Promise<User[]> {
-    const response = await axios.get(String(process.env.COMPANY_SERVICE_DNS) + `/company/search?name=${companyName}`);
+    const response = await axios.get(String(process.env.COMPANY_SERVICE_DNS) + `/company/search?companyName=${companyName}`);
     const companyId = response.data[0]._id;
     return await this.userRepository.findAll({companyId});
   }
